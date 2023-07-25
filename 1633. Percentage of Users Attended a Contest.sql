@@ -1,0 +1,1 @@
+SELECT r.contest_id, ROUND((COUNT(*) / u.user_count) * 100, 2) AS percentage FROM (SELECT *, COUNT(*) OVER() AS user_count FROM Users) u INNER JOIN Register r ON u.user_id = r.user_id GROUP BY r.contest_id ORDER BY percentage DESC, r.contest_id;

@@ -1,0 +1,2 @@
+SELECT ROUND(AVG(d.order_date = d.customer_pref_delivery_date) * 100, 2) AS immediate_percentage FROM Delivery d INNER JOIN
+(SELECT customer_id, MIN(order_date) AS min_date FROM Delivery GROUP BY customer_id ORDER BY order_date) m ON d.customer_id = m.customer_id AND d.order_date = m.min_date;
